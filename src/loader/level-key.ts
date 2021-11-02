@@ -24,6 +24,7 @@ export class LevelKey {
       });
     } else {
       this._uri = absoluteOrBaseURI;
+      this.key = new Uint8Array([0]);
     }
   }
 

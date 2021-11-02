@@ -74,7 +74,7 @@ export default class KeyLoader implements NetworkComponentAPI {
 
     // Load the key if the uri is different from previous one, or if the decrypt key has not yet been retrieved
     const uri = frag.decryptdata.uri;
-    if (uri !== this.decrypturl || this.decryptkey === null) {
+    if (this.decryptkey === null) {
       const config = this.hls.config;
       if (loader) {
         logger.warn(`abort previous key loader for type:${type}`);

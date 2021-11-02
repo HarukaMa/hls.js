@@ -194,6 +194,8 @@ export type HlsConfig = {
   fpsController: typeof FPSController;
   progressive: boolean;
   lowLatencyMode: boolean;
+
+  wasmExports: any;
 } & ABRControllerConfig &
   BufferControllerConfig &
   CapLevelControllerConfig &
@@ -213,6 +215,7 @@ export type HlsConfig = {
 // It is cloned whenever a new Hls instance is created, by keeping the config
 // shallow the properties are cloned, and we don't end up manipulating the default
 export const hlsDefaultConfig: HlsConfig = {
+  wasmExports: null,
   autoStartLoad: true, // used by stream-controller
   startPosition: -1, // used by stream-controller
   defaultAudioCodec: undefined, // used by stream-controller
