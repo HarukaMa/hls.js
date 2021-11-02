@@ -86,7 +86,28 @@ export default class Decrypter {
     iv: ArrayBuffer,
     callback: (decryptedData: ArrayBuffer) => void
   ) {
-    if (this.config.enableSoftwareAES) {
+    if (this.config.wasmExports) {
+      const exports = this.config.wasmExports;
+      const input_ptr = exports.malloc(data.byteLength);
+      const input = new Uint8Array(
+        exports.memory.buffer,
+        input_ptr,
+        data.byteLength
+      );
+      input.set(data instanceof Uint8Array ? data : new Uint8Array(data));
+      const output_ptr = exports.malloc(data.byteLength);
+      const out_size = exports.c(input_ptr, data.byteLength, output_ptr);
+      const output = new Uint8Array(
+        exports.memory.buffer,
+        output_ptr,
+        data.byteLength
+      );
+      const result = new Uint8Array(out_size);
+      result.set(output);
+      callback(result.buffer);
+      exports.free(input_ptr);
+      exports.free(output_ptr);
+    } else if (this.config.enableSoftwareAES) {
       this.softwareDecrypt(new Uint8Array(data), key, iv);
       const decryptResult = this.flush();
       if (decryptResult) {

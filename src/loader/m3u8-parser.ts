@@ -396,7 +396,7 @@ export default class M3U8Parser {
               // if it isn't, then we should instead construct the LevelKey using fromURI.
               levelkey = LevelKey.fromURL(baseurl, decrypturi);
               if (
-                decrypturi &&
+                // decrypturi &&
                 ['AES-128', 'SAMPLE-AES', 'SAMPLE-AES-CENC'].indexOf(
                   decryptmethod
                 ) >= 0
