@@ -98,7 +98,7 @@ class SampleAesDecrypter {
   // AVC - encrypt one 16 bytes block out of ten, starting from offset 32
   getAvcEncryptedData(decodedData: Uint8Array) {
     const encryptedDataLen =
-      Math.floor((decodedData.length - 48) / 160) * 16 + 16;
+      Math.floor((decodedData.length - 49) / 160) * 16 + 16;
     const encryptedData = new Int8Array(encryptedDataLen);
     let outputPos = 0;
     for (
