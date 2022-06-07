@@ -459,10 +459,16 @@ function getEncryptionType(
   if (
     data.byteLength > 0 &&
     decryptData != null &&
-    decryptData.key != null &&
-    decryptData.iv !== null &&
+    // decryptData.key != null &&
+    // decryptData.iv !== null &&
     decryptData.method != null
   ) {
+    if (decryptData.key == null) {
+      decryptData.key = new Uint8Array();
+    }
+    if (decryptData.iv == null) {
+      decryptData.iv = new Uint8Array();
+    }
     encryptionType = decryptData as KeyData;
   }
   return encryptionType;

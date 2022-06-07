@@ -1014,6 +1014,7 @@ export type HlsConfig = {
     fpsController: typeof FPSController;
     progressive: boolean;
     lowLatencyMode: boolean;
+    wasmExports: any;
 } & ABRControllerConfig & BufferControllerConfig & CapLevelControllerConfig & EMEControllerConfig & FPSControllerConfig & FragmentLoaderConfig & LevelControllerConfig & MP4RemuxerConfig & PlaylistLoaderConfig & StreamControllerConfig & LatencyControllerConfig & MetadataControllerConfig & TimelineControllerConfig & TSDemuxerConfig;
 
 // Warning: (ae-missing-release-tag) "HlsEventEmitter" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
