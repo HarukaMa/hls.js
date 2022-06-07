@@ -368,7 +368,7 @@ export default class M3U8Parser {
               keyAttrs.enumeratedString('KEYFORMAT') ?? 'identity';
 
             const unsupportedKnownKeyformatsInManifest = [
-              'com.apple.streamingkeydelivery',
+              // 'com.apple.streamingkeydelivery',
               'com.microsoft.playready',
               'urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed', // widevine (v2)
               'com.widevine', // earlier widevine (v1)
@@ -386,7 +386,7 @@ export default class M3U8Parser {
               // We are supposed to skip keys we don't understand.
               // As we currently only officially support identity keys
               // from the manifest we shouldn't save any other key.
-              continue;
+              // continue;
             }
 
             // TODO: multiple keys can be defined on a fragment, and we need to support this
