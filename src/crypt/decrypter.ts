@@ -144,17 +144,18 @@ export default class Decrypter {
     if (currentIV) {
       iv = currentIV;
     }
-
     let softwareDecrypter = this.softwareDecrypter;
     if (!softwareDecrypter) {
       softwareDecrypter = this.softwareDecrypter = new AESDecryptor();
     }
-    softwareDecrypter.expandKey(key);
-
-    const result = currentResult;
+    if (!this.config.wasmExports) {
+      softwareDecrypter.expandKey(key);
 
     this.currentResult = softwareDecrypter.decrypt(currentChunk.buffer, 0, iv);
     this.currentIV = sliceUint8(currentChunk, -16).buffer;
+    }
+
+    const result = currentResult;
 
     if (!result) {
       return null;
